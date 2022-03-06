@@ -6,5 +6,4 @@ data class ReqSignup(
     var tokenid: String,
     var usertype: String,
     var version: String,
-    var studiocode: String,
 )

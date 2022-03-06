@@ -1,7 +1,6 @@
 package com.sraseo.demoappusinghilt
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,11 +11,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.sraseo.State
 import com.sraseo.demoappusinghilt.databinding.ActivityMainBinding
 import com.sraseo.viewmodel.SignupViewModel
 import com.sraseo.ytclient.model.Order
+import com.sraseo.ytclient.model.ReqSignup
+import com.sraseo.ytclient.model.ResSignup
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -63,6 +65,31 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+        binding.fab1.setOnClickListener { view ->
+            val reqSignup = ReqSignup("neeraj","ns@ns.com","test","admin","123456")
+            signupViewModel.signUp(reqSignup).observe(this, Observer {
+                when (it) {
+                    is State.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is State.Success -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        val resSignup: ResSignup = it.data as ResSignup
+                        Toast.makeText(baseContext, resSignup.toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    is State.Failure -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                    }
+                    is State.Empty -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                    }
+                }
+            })
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
