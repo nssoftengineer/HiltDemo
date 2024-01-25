@@ -1,4 +1,4 @@
-package com.sraseo.study
+package com.sraseo.studyNs.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 import com.sraseo.demoappusinghilt.databinding.EachRowBinding
-import com.sraseo.study.module.PostNs
 
-class PostAdapter(private var postList: List<PostNs>)
-    : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+import com.sraseo.studyNs.Model.NsData
+
+class NsAdapter(private var postList: List<NsData>)
+    : RecyclerView.Adapter<NsAdapter.PostViewHolder>() {
     private lateinit var binding: EachRowBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -28,7 +29,7 @@ class PostAdapter(private var postList: List<PostNs>)
 
     }
 
-    fun setData(postList: List<PostNs>)
+    fun setData(postList: List<NsData>)
     {
         this.postList=postList
         notifyDataSetChanged()
