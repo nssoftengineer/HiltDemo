@@ -9,9 +9,10 @@
         android:name="com.sraseo.app.MyApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.DemoAppUsingHilt">
         <activity
-            android:name=".MainActivity"
+            android:name="com.sraseo.study.MainActivityNs"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DemoAppUsingHilt.NoActionBar">

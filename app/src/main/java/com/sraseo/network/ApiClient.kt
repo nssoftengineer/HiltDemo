@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 class ApiClient @Inject constructor() {
-    private val BASE_URL = "https://sraseo.com/api/sraseo/index.php/api/sraseo/"
+    private val BASE_URL = "http://sraseo.com/api/sraseo/index.php/api/sraseo/"
 
     fun create(): ApiService {
         val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
